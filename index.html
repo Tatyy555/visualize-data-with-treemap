@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link href="/dist/output.css" rel="stylesheet" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body
+    class="bg-mine p-10 flex flex-col justify-center items-center"
+  >
+    <div class="bg-white flex flex-col justify-center items-center text-center">
+      <h1 id="title" class="text-green-600 font-extrabold text-3xl px-5">
+  
+      </h1>
+      <h2 id="description" class="text-green-600 font-bold px-5">
+
+      </h2>
+      <svg id="map" class="bg-slate-100 m-5"></svg>
+      <svg id="legend" class="bg-slate-100"></svg>
+    </div>
+
+    <div
+      id="tooltip"
+      class="bg-black/60 text-white absolute max-h-[200px] w-[130px] p-2 rounded-md text-center items-center"
+    ></div>
+    <script src="/src/index.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
