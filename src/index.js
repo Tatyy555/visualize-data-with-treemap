@@ -4,7 +4,7 @@ const fetchDataAndDraw = async () => {
     "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json"
   );
   let data = await res.json();
-  console.log(data);
+  // console.log(data);
 
   // Set the titile and description
   let title = document.getElementById("title");
@@ -24,7 +24,7 @@ const fetchDataAndDraw = async () => {
     .sort((node1, node2) => {
       return node2.value - node1.value;
     });
-  console.log(hierarchy);
+  // console.log(hierarchy);
 
   // Draw the treemap
   let createTreeMap = d3.treemap().size([1000, 600]);
@@ -35,10 +35,8 @@ const fetchDataAndDraw = async () => {
     return d.data.category;
   });
   category = Array.from(new Set(category));
-  console.log(category);
 
   // Draw the treemap
-
   // Build color scale
   let myColor = d3
     .scaleLinear()
@@ -82,7 +80,6 @@ const fetchDataAndDraw = async () => {
     .attr("class", "tile")
     .attr("fill", (d) => {
       let number = category.indexOf(d.data.category);
-      console.log(number);
       return myColor(number);
     })
     .attr("data-name", (d) => {
@@ -123,56 +120,6 @@ const fetchDataAndDraw = async () => {
     })
     .style("font-size", "12px");
 
-  // // Set the size
-  // let height = 600;
-  // let width = 1000;
-  // let padding = 60;
-  // {
-  //   console.log(countryData);
-  // }
-  // let svg = d3
-  //   .select("#map")
-  //   .attr("width", width)
-  //   .attr("height", height)
-  //   .attr("class", "counties")
-  //   .selectAll("path")
-  //   .data(countryData)
-  //   .enter()
-  //   .append("path")
-  //   .attr("class", "county")
-  //   .attr("d", d3.geoPath())
-  //   .attr("fill", (countryItem) => {
-  //     let id = countryItem["id"];
-  //     let education = educationalData.find((educationItem) => {
-  //       return educationItem["fips"] === id;
-  //     });
-  //     let percentage = education["bachelorsOrHigher"];
-  //     return myColor(percentage);
-  //     // if (percentage <= 15) {
-  //     //   return "tomato";
-  //     // } else if (percentage <= 30) {
-  //     //   return "orange";
-  //     // } else if (percentage <= 45) {
-  //     //   return "yellow";
-  //     // } else {
-  //     //   return "lightgreen";
-  //     // }
-  //   })
-  //   .attr("data-fips", (countryItem) => {
-  //     return countryItem["id"];
-  //   })
-  //   .attr("data-education", (countryItem) => {
-  //     let id = countryItem["id"];
-  //     let education = educationalData.find((educationItem) => {
-  //       return educationItem["fips"] === id;
-  //     });
-  //     return education["bachelorsOrHigher"];
-  //   })
-  //   // Add Tooltip effect
-  //   .on("mouseover", mouseover)
-  //   .on("mousemove", mousemove)
-  //   .on("mouseleave", mouseleave);
-
   // Set the size for legend
   let height2 = 60;
   let width2 = 750;
@@ -187,29 +134,11 @@ const fetchDataAndDraw = async () => {
     .append("g")
     .call(
       d3.axisBottom(xAxisScale2).ticks(category.length).tickFormat((d,i)=>{
-        console.log(d)
-        console.log(i)
         return category[d]
       })
-      // d3.axisBottom(xAxisScale2).tickFormat((d, i) => {
-      //   console.log(d)
-      //   console.log(category.length)
-      //   console.log(category[i])
-      //   return category[i];
-      // })
     )
     .attr("id", "x-axis2")
     .attr("transform", "translate(0, 40)");
-
-  // // let yAxisScale2 = d3
-  // //   .scaleLinear()
-  // //   .range([0, padding2])
-  // //   .domain(1);
-  // // svg2
-  // // .append("g")
-  // // .call(d3.axisLeft(yAxisScale2))
-  // // .attr("id", "y-axis2")
-  // // .attr("transform", "translate(" + padding2 + ",0)");
 
   // Add the squares
   svg2
@@ -230,23 +159,6 @@ const fetchDataAndDraw = async () => {
       return 0;
     })
     .attr("transform", "translate(-12, 10)")
-    .append("text")
-    .text((d, i) => {
-      console.log(d);
-      return d;
-    })
-    .attr("x")
-    .attr("y");
-  // .data((d,i) => {
-  //   console.log(d)
-  //   return ;
-  // })
-  // .enter()
-
-  // .text((d, i) => {
-  //   return category[i];
-  // })
-  // .style("font-size", "12px")
 };
 
 fetchDataAndDraw();
